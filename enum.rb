@@ -1,19 +1,60 @@
 module Enumerable
   def my_each
     index = 0
-    while index < length
-      yield(self[index])
-      index += 1
+    if block_given?
+      while index < length
+        yield(self[index])
+        index += 1
+      end
+      self
+
+    else
+      to_enum(:my_each)
     end
-    self
   end
 
   def my_each_with_index
     index = 0
-    my_each do
-      yield(self[index], index)
-      index += 1
+    if block_given?
+      my_each do
+        yield(self[index], index)
+        index += 1
+      end
+      self
+    else
+      to_enum(:my_each_with_index)
     end
-    self
+  end
+
+  def my_select
+    array = []
+    if block_given?
+      my_each do |item|
+        array.push(item) if yield(item)
+      end
+      self
+    else
+      to_enum(:my_select)
+    end
+  end
+
+  def my_all?
+
+  end
+
+  def my_none?
+
+  end
+
+  def my_count
+
+  end
+
+  def my_map
+
+  end
+
+  def my_inject
+    
   end
 end # end of module
