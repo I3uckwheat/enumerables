@@ -8,7 +8,6 @@ module Enumerable
         index += 1
       end
       self
-
     else
       to_enum(:my_each)
     end
