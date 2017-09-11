@@ -40,14 +40,16 @@ module Enumerable
 
   def my_all?
     my_each do |item|
-      return false if (block_given? && yield(item) == false) || (!block_given? && !item)
+      return false if (block_given? && yield(item)) ||
+                      (!block_given? && !item)
     end
     true
   end
 
   def my_none?
     my_each do |item|
-      return false if (block_given? && yield(item) == true) || (!block_given? && item)
+      return false if (block_given? && yield(item)) ||
+                      (!block_given? && item)
     end
     true
   end
@@ -76,7 +78,9 @@ module Enumerable
     array
   end
 
-  def my_inject
-   #inject
+  def my_inject(initial = self[0], _sym = :self)
+    my_each_with_index do |item, index|
+
+    end
   end
 end # end of module
