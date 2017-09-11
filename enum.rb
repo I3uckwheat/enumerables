@@ -1,3 +1,4 @@
+# my enumerables
 module Enumerable
   def my_each
     index = 0
@@ -78,9 +79,14 @@ module Enumerable
     array
   end
 
-  def my_inject(initial = self[0], _sym = :self)
+  def my_inject(memo = nil)
     my_each_with_index do |item, index|
-
+      if index.zero? && memo.nil?
+        memo = item
+        next
+      end
+      memo = yield(item, memo)
     end
+    memo
   end
 end # end of module
