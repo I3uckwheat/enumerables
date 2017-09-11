@@ -67,11 +67,11 @@ module Enumerable
     count
   end
 
-  def my_map
+  def my_map(&block)
     if block_given?
       array = []
       my_each do |item|
-        array << yield(item)
+        array << block.call(item)
       end
     else
       to_enum(:my_map)
