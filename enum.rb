@@ -39,22 +39,22 @@ module Enumerable
   end
 
   def my_all?
-
+    my_each do |item|
+      return false if (block_given? && yield(item) == false) || (!block_given? && !item)
+    end
+    true
   end
 
   def my_none?
-
+    my_each do |item|
+      return false if (block_given? && yield(item) == true) || (!block_given? && item)
+    end
+    true
   end
 
-  def my_count
+  def my_count; end
 
-  end
+  def my_map; end
 
-  def my_map
-
-  end
-
-  def my_inject
-    
-  end
+  def my_inject; end
 end # end of module
