@@ -80,12 +80,8 @@ module Enumerable
   end
 
   def my_inject(memo = nil)
-    my_each_with_index do |item, index|
-      if index.zero? && memo.nil?
-        memo = item
-        next
-      end
-      memo = yield(item, memo)
+    my_each do |item|
+      memo = memo ? yield(item, memo) : item
     end
     memo
   end
