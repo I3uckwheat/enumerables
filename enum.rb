@@ -64,7 +64,19 @@ module Enumerable
     count
   end
 
-  def my_map; end
+  def my_map
+    if block_given?
+      array = []
+      my_each do |item|
+        array << yield(item)
+      end
+    else
+      to_enum(:my_map)
+    end
+    array
+  end
 
-  def my_inject; end
+  def my_inject
+   #inject
+  end
 end # end of module
