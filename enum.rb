@@ -52,7 +52,17 @@ module Enumerable
     true
   end
 
-  def my_count; end
+  def my_count
+    count = 0
+    my_each do |item|
+      if block_given? && yield(item)
+        count += 1
+      elsif !block_given?
+        count += 1
+      end
+    end
+    count
+  end
 
   def my_map; end
 
